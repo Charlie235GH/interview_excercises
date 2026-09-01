@@ -82,3 +82,109 @@ print("list_dedup:", list_dedup([1,2,3,4,5,6,7,-1, 7]))
 li = [1,2,3,4,5,6,7,-1, 7]
 li = list(dict.fromkeys(li)) # keeping the order, unlike list(set(li))
 print("dict.from_key(): ", li)
+
+"""Question 11: Convert Celsius to Fahrenheit"""
+def c2f(celsius: float) -> float:
+    return celsius*1.8+32
+
+print("c2f:",c2f(0))
+
+"""Question 12: Count words in a string"""
+def word_count(word:str) -> int:
+    return len(word.split())
+
+c = "hello" + " " + "John" # slow performance with new object, immutable
+
+print(" ".join(["My", "sentence", "is", "brief."]))
+
+print(", ".join(str(c) for c in [1,2,3,4,50]))
+
+print("word_count: ", word_count("Hello, this is my sentence!"))
+
+print("Hello this is my sentence in my example")
+
+"""Question 13: Find second largest number"""
+
+def max2_1(li: list):
+    m1 = max(li)
+    m2 = max([c for c in li if c < m1])
+    return m2
+
+li = [1,2,3,4,5]
+print("max2_1:", max2_1(li))
+
+# or
+
+def max2_2(li: list, k: int):
+    li_unique = list(set(li)) # deduplicate
+    li_unique.sort() # sort
+    return li_unique[-k] # take 2nd last
+
+li = [1,2,3,4,5]
+print("max2_2:", max2_2(li, 3))
+
+"""Question 14: Check if list is sorted"""
+def is_sorted1(li: list) -> bool:
+    li_sorted = li.copy()
+    li_sorted.sort()
+
+    for i in range(len(li)):
+        if li[i] != li_sorted[i]:
+            return False
+    return True
+
+print("is_sorted1:", is_sorted1([1,2,3,4,5,5,4]))
+
+# or
+def is_sorted2(li: list) -> bool:
+    return all(li[i] <= li[i+1] for i in range(len(li)-1))
+
+print("is_sorted2:", is_sorted2([1,2,3,4,5,5,4]))
+
+li1 = [1,2,3,4,5,1,2,3,4,5]
+li2 = li1.copy()
+li2.sort()
+print("sorted lists: ", li1, li2)
+
+"""Question 15: Generate Fibonacci sequence"""
+def fibonacci(n:int) -> int:
+    if n <= 0:
+        return []
+    elif n == 1:
+        return [0]
+    elif n == 2:  
+        return [0, 1]
+
+    fib = [0, 1]
+    for c in range(2, n):
+        fib.append(fib[-2] + fib[-1])
+    return fib
+
+
+print("fibonacci:", fibonacci(4))
+
+"""Question 16: Merge two sorted lists"""
+def merge_sorted_list(li1: list, li2: list) -> list:
+    li1_pos = 0
+    li2_pos = 0
+    li_m = []
+    for i in range(len(li1) + len(li2)):
+        if li1_pos < len(li1) and li2_pos < len(li2):
+            if li1[li1_pos] < li2[li2_pos]:
+                li_m.append(li1[li1_pos])
+                li1_pos +=1
+            else:
+                li_m.append(li2[li2_pos])
+                li2_pos +=1
+        elif li1_pos < len(li1):
+            li_m.append(li1[li1_pos])
+            li1_pos +=1
+        else:
+            li_m.append(li2[li2_pos])
+            li2_pos +=1
+
+    return li_m
+
+print("merge_sorted_list:", merge_sorted_list([1,1,1,2,3,3,3,4,5,6], [1,2,3,3,3,4,5,5,5,6,6,7,8]))
+
+"""Question 17: Find intersection of two lists"""
