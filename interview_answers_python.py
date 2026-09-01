@@ -188,3 +188,54 @@ def merge_sorted_list(li1: list, li2: list) -> list:
 print("merge_sorted_list:", merge_sorted_list([1,1,1,2,3,3,3,4,5,6], [1,2,3,3,3,4,5,5,5,6,6,7,8]))
 
 """Question 17: Find intersection of two lists"""
+def list_intersect(li1: list, li2: list) -> list:
+    se1 = set(li1)
+    se2 = set(li2)
+    se3 = se1.intersection(se2)
+    return list(se3)
+
+print("list_intersect:", list_intersect([1,2,3,4,5,6],[-1, -2, -3, -4,5,6, 7]))
+
+"""Question 18: Rotate list to the right"""
+def list_rotate_right(li: list, k: int) -> list:
+    if not li or len(li) == 0:
+        return li
+    k = k % len(li) # in case k is larger than list lenght
+    return li[len(li)-k:] + li[:len(li)-k]
+
+print("list_rotate_right:", list_rotate_right([1,2,3,4,5,6,7,8], 3))
+
+"""Question 19: Find missing number in sequence"""
+def find_missing(li:list) -> int:
+    mi = min(li)
+    ma = max(li)
+    sum_full = sum(c for c in range(mi,ma+1))
+    return sum_full - sum(li)
+
+print("find_missing:", find_missing([1,2,3,4,5,6,7,8,9,11,12]))
+
+def find_missings(li:list) -> set:
+    se_part = set(li)
+    se_full = set(range(li[0],li[-1]))
+    return se_full.difference(se_part)
+
+print("find_missings:", find_missings([1,2,3,4,5,6,7,8,9,11,12,13,15,16]))
+
+"""Question 20: Group anagrams..."""
+
+"""Question 21: Find first non-repeating character"""
+def nrc(s: str) -> str | None:
+    for i in range(len(s)):
+        if s[i] not in s[:i] + s[i+1:]:
+            return s[i]
+    return None
+
+print("nrc: ", nrc("hheelloo  JJhonnk"))
+
+"""Question 22: Binary search"""
+
+"""Question 23: Valid parentheses"""
+def is_valid_parentheses(s: str) -> bool:
+    return True
+
+print("is_valid_parentheses: ", is_valid_parentheses("'hello'"))
