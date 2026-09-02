@@ -239,3 +239,32 @@ def is_valid_parentheses(s: str) -> bool:
     return True
 
 print("is_valid_parentheses: ", is_valid_parentheses("'hello'"))
+
+"""Question 24: Longest common prefix"""
+
+"""Question 25: Remove duplicates from sorted array"""
+def dedupe(li_sorted: list) -> int:
+    le = len(li_sorted)
+    pos = 0
+    while(True):
+        if pos < le-1:
+            if li_sorted[pos] == li_sorted[pos+1]:
+                li_sorted.pop(pos+1)
+                le -= 1
+            pos += 1
+        else:
+            return pos+1
+        
+li = [1,2,2,3]
+cnt = dedupe(li)
+print("dedupe:", li, cnt)
+
+"""Find indices of two numbers that add up to target."""
+def find_sum(li: list, s: int) -> tuple | None:
+    for i1 in range(len(li)-1):
+        for i2 in range(i1+1, len(li)):
+            if li[i1] + li[i2] == s:
+                return (i1, i2)
+    return None
+
+print("find_sum:", find_sum([1,2,3,4,5,6,7], 4))
